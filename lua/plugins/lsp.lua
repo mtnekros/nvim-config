@@ -146,14 +146,17 @@ return {
             -- gopls = {},
             ruff = {
                 init_options = {
-                    cmd = {"ruff", "server"},
+                    cmd = {"ruff", "server", "--preview"},
                     filetypes = {"python"},
                     settings = {
                         -- ["ruff.configuration"] = "~/.pyproject.toml",
                         lineLength = 120,
-                        fixAll = false,
+                        fixAll = true,
                         lint = {
-                            select = {"F","UP","B","SIM","I","E","W","TCH"},
+                            select = {"ANN","B","D","E","F","I","S","SIM","TCH","UP","W","YTT"},
+                        },
+                        format = {
+                            preview = true,
                         },
                         settings = {
                             codeAction = {
