@@ -144,13 +144,23 @@ return {
         local servers = {
             -- clangd = {},
             -- gopls = {},
-            ruff_lsp = {
+            ruff = {
                 init_options = {
+                    cmd = {"ruff", "server"},
+                    filetypes = {"python"},
                     settings = {
-                        args = {
-                            "--select", "F,UP,B,SIM,I,E,W",
-                            "--line-length", "120",
-                            "--ignore", "I001"
+                        -- ["ruff.configuration"] = "~/.pyproject.toml",
+                        lineLength = 120,
+                        fixAll = false,
+                        lint = {
+                            select = {"F","UP","B","SIM","I","E","W","TCH"},
+                        },
+                        settings = {
+                            codeAction = {
+                                -- disableRuleComment = {
+                                --     enable = { true },
+                                -- },
+                            },
                         },
                     },
                 },
@@ -210,7 +220,7 @@ return {
                     -- by the server configuration above. Useful when disabling
                     -- certain features of an LSP (for example, turning off formatting for ts_ls)
                     local on_attach = function(client, bufnr)
-                        if client.name == 'ruff_lsp' then
+                        if client.name == 'ruff' then
                             client.server_capabilities.hoverProvider = false
                        end
                     end
