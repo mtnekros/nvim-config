@@ -92,6 +92,10 @@ vim.keymap.set("n", "<leader>v", "<cmd>source $MYVIMRC<cr>")
 vim.keymap.set("n", "<leader>V", "<cmd>edit ~/AppData/Local/nvim/init.lua<cr>")
 vim.keymap.set("n", "<leader>w", "<cmd>edit ~\\OneDrive\\ -\\ Verisk\\ Analytics\\Desktop\\Notes\\Work\\tasks.md<cr>")
 
+-- mapping for my projects
+vim.keymap.set("n", "<leader>fs", "<cmd>set filetype=sql<cr>")
+vim.keymap.set("n", "<leader>df", "<cmd>filetype detect<cr>")
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 vim.api.nvim_create_autocmd("TextYankPost", {
