@@ -1,8 +1,3 @@
--- for k, v in pairs(vim.api.nvim_get_namespaces()) do
---     print(k, v)
--- end
--- print(vim.api.nvim_get_hl_id_by_name('lazy'))
-
 return { -- You can easily change to a different colorscheme.
 	-- Change the name of the colorscheme plugin below, and then
 	-- change the command in the config to whatever the name of that colorscheme is.
@@ -30,4 +25,3 @@ return { -- You can easily change to a different colorscheme.
         -- vim.api.nvim_set_hl(0, "Comment", { bg = "none", fg = "DarkGray" })
 	end,
 }
-
