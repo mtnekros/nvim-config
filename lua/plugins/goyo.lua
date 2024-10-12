@@ -5,11 +5,11 @@ return {
         vim.g.goyo_height = '100%'
         local default_opts = {}
         local mappings = {
-            { mode = "n", keys = "j", action = "gj", opts = {noremap = true}},
-            { mode = "n", keys = "k", action = "gk", opts = {noremap = true}},
-            { mode = "n", keys = "0", action = "g0", opts = {noremap = true}},
-            { mode = "n", keys = "I", action = "gI", opts = {noremap = true}},
-            { mode = "n", keys = "$", action = "g$", opts = {noremap = true}},
+            { mode = {"n", "v"}, keys = "j", action = "gj", opts = {noremap = true}},
+            { mode = {"n", "v"}, keys = "k", action = "gk", opts = {noremap = true}},
+            { mode = {"n", "v"}, keys = "0", action = "g0", opts = {noremap = true}},
+            { mode = {"n", "v"}, keys = "I", action = "gI", opts = {noremap = true}},
+            { mode = {"n", "v"}, keys = "$", action = "g$", opts = {noremap = true}},
         }
         local default_hl_normal = vim.api.nvim_get_hl(0, {name = "Normal"})
         local default_hl_normal_float = vim.api.nvim_get_hl(0, {name = "NormalFloat"})
@@ -29,7 +29,7 @@ return {
                 -- set goyo options
                 vim.opt.wrap = true
                 vim.opt.list = false
-                vim.opt.cursorline = false
+                vim.opt.cursorline = true
                 -- highlights
                 vim.api.nvim_set_hl(0, "Normal", {bg = "black"})
                 vim.api.nvim_set_hl(0, "NormalFloat", {bg = "black"})
