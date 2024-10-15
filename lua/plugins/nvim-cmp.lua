@@ -1,3 +1,8 @@
+local function clear_luasnip_ns()
+    local ns_id = vim.api.nvim_create_namespace("Luasnip") -- this is created by luasnip when using ext opts
+    vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
+end
+
 return { -- Autocompletion
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
@@ -36,8 +41,26 @@ return { -- Autocompletion
 		-- See `:help cmp`
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		luasnip.config.setup({})
+        local types = require("luasnip.util.types")
+		luasnip.config.setup({
+            ext_opts = {
+                [types.choiceNode] = {
+                    active = {
+                        virt_text = {{" Current Choice", "Comment"}},
+                    },
+                },
+            }
+        })
 
+        -- this is best compromise i could come up with to clear the extmarks
+        -- from luasnip (ext_opts: choice node extmarks)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("LuaSnipAG", {clear = true}),
+            callback = clear_luasnip_ns,
+        })
+        vim.api.nvim_create_user_command("ClearSnipNs", clear_luasnip_ns, {})
+
+        -- setup nvim-cmp mappings & settings
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -108,5 +131,3 @@ return { -- Autocompletion
         end
 	end,
 }
-
-

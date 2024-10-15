@@ -13,8 +13,27 @@ local blog_outline_template = [[
 # Conclusion
 {conclusion}
 
-<Add a question here>
+<Add a question here>{last_cur_pos}
 ]]
+
+local function get_current_date()
+    local function formatted_day(day)
+        local last_digit = day % 10
+        local suffix = "th"
+        if last_digit == 1 and day ~= 11 then
+            suffix = "st"
+        elseif last_digit == 2 and day ~= 12 then
+            suffix = "nd"
+        elseif last_digit == 3 and day ~= 13 then
+            suffix = "rd"
+        end
+        return tostring(day) .. suffix
+    end
+    local day = tonumber(os.date("%d"))
+    local formatted_date = tostring(os.date("%A, {day} %B %Y"))
+    return string.gsub(formatted_date, "{day}", formatted_day(day))
+end
+
 
 local function add_tasks_recursively()
     return ls.snippet_node(
@@ -35,6 +54,7 @@ local function add_tasks_recursively()
         })
     )
 end
+
 
 local function add_subtitle_recursively()
     return ls.snippet_node(
@@ -59,11 +79,22 @@ ls.add_snippets('markdown', {
             subtitle = ls.insert_node(3, "subtitle"),
             more_subtitle = ls.dynamic_node(4, add_subtitle_recursively, {}),
             conclusion = ls.insert_node(5, "<add conclusion here>"),
+            last_cur_pos = ls.insert_node(0)
         })
     ),
     -- tasks snippet
     ls.snippet('tasks',
         fmt("* [{check}] {task}{more_task}", {
+            check = ls.choice_node(1, {ls.text_node(" "), ls.text_node("X"), ls.text_node("-")}),
+            task  = ls.insert_node(2, "task"),
+            more_task = ls.dynamic_node(3, add_tasks_recursively),
+        })
+   ),
+    -- todays' tasks snippet
+    ls.snippet('ttasks',
+        fmt("# {date}{new_line}* [{check}] {task}{more_task}", {
+            date = ls.function_node(get_current_date),
+            new_line = ls.text_node({"", ""}),
             check = ls.choice_node(1, {ls.text_node(" "), ls.text_node("X"), ls.text_node("-")}),
             task  = ls.insert_node(2, "task"),
             more_task = ls.dynamic_node(3, add_tasks_recursively),
