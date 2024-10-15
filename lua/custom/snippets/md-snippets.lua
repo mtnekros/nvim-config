@@ -2,20 +2,6 @@
 local ls = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
 
-local blog_outline_template = [[
-# {title}
-
-## Overview
-{overview}
-
-## {subtitle}{more_subtitle}
-
-# Conclusion
-{conclusion}
-
-<Add a question here>{last_cur_pos}
-]]
-
 local function get_current_date()
     local function formatted_day(day)
         local last_digit = day % 10
@@ -73,14 +59,29 @@ end
 ls.add_snippets('markdown', {
     -- blog outline snippet
     ls.snippet('bol',
-        fmt(blog_outline_template, {
-            title = ls.insert_node(1, "title"),
-            overview = ls.insert_node(2, "<add an hook here and/or the overview of the blog>"),
-            subtitle = ls.insert_node(3, "subtitle"),
-            more_subtitle = ls.dynamic_node(4, add_subtitle_recursively, {}),
-            conclusion = ls.insert_node(5, "<add conclusion here>"),
-            last_cur_pos = ls.insert_node(0)
-        })
+        fmt(
+            [[
+            # {title}
+
+            ## Overview
+            {overview}
+
+            ## {subtitle}{more_subtitle}
+
+            # Conclusion
+            {conclusion}
+
+            <Add a question here>{last_cur_pos}
+            ]],
+            {
+                title = ls.insert_node(1, "title"),
+                overview = ls.insert_node(2, "<add an hook here and/or the overview of the blog>"),
+                subtitle = ls.insert_node(3, "subtitle"),
+                more_subtitle = ls.dynamic_node(4, add_subtitle_recursively, {}),
+                conclusion = ls.insert_node(5, "<add conclusion here>"),
+                last_cur_pos = ls.insert_node(0)
+            }
+        )
     ),
     -- tasks snippet
     ls.snippet('tasks',
@@ -92,9 +93,12 @@ ls.add_snippets('markdown', {
    ),
     -- todays' tasks snippet
     ls.snippet('ttasks',
-        fmt("# {date}{new_line}* [{check}] {task}{more_task}", {
+        fmt(
+            [[
+            # {date}
+            * [{check}] {task}{more_task}
+            ]], {
             date = ls.function_node(get_current_date),
-            new_line = ls.text_node({"", ""}),
             check = ls.choice_node(1, {ls.text_node(" "), ls.text_node("X"), ls.text_node("-")}),
             task  = ls.insert_node(2, "task"),
             more_task = ls.dynamic_node(3, add_tasks_recursively),
