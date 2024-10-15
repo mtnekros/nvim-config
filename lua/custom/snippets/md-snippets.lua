@@ -20,6 +20,14 @@ local function get_current_date()
     return string.gsub(formatted_date, "{day}", formatted_day(day))
 end
 
+local function check_choices()
+    return {
+        ls.text_node(" "),
+        ls.text_node("X"),
+        ls.text_node("/"),
+        ls.text_node(">")
+    }
+end
 
 local function add_tasks_recursively()
     return ls.snippet_node(
@@ -28,11 +36,7 @@ local function add_tasks_recursively()
             ls.text_node(""),
             ls.snippet_node(nil, {
                 ls.text_node({"", "* ["}), -- for new line
-                ls.choice_node(1, {
-                    ls.text_node(" "),
-                    ls.text_node("X"),
-                    ls.text_node("-")
-                }),
+                ls.choice_node(1, check_choices()),
                 ls.text_node("] "),
                 ls.insert_node(2, "task"),
                 ls.dynamic_node(3, add_tasks_recursively),
@@ -40,7 +44,6 @@ local function add_tasks_recursively()
         })
     )
 end
-
 
 local function add_subtitle_recursively()
     return ls.snippet_node(
@@ -86,7 +89,7 @@ ls.add_snippets('markdown', {
     -- tasks snippet
     ls.snippet('tasks',
         fmt("* [{check}] {task}{more_task}", {
-            check = ls.choice_node(1, {ls.text_node(" "), ls.text_node("X"), ls.text_node("-")}),
+            check = ls.choice_node(1, check_choices()),
             task  = ls.insert_node(2, "task"),
             more_task = ls.dynamic_node(3, add_tasks_recursively),
         })
@@ -99,7 +102,7 @@ ls.add_snippets('markdown', {
             * [{check}] {task}{more_task}
             ]], {
             date = ls.function_node(get_current_date),
-            check = ls.choice_node(1, {ls.text_node(" "), ls.text_node("X"), ls.text_node("-")}),
+            check = ls.choice_node(1, check_choices()),
             task  = ls.insert_node(2, "task"),
             more_task = ls.dynamic_node(3, add_tasks_recursively),
         })
