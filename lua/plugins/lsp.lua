@@ -154,6 +154,7 @@ return {
                         fixAll = true,
                         lint = {
                             select = {"ANN","B","D","E","F","I","S","SIM","TCH","UP","W","YTT"},
+                            ignore = {"ANN101"}, -- disable missing-type-self ANN101
                         },
                         format = {
                             preview = true,
