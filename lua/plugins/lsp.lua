@@ -176,10 +176,10 @@ return {
                         disableOrganizeImports = true,
                     },
                     python = {
-                        analysis = {
-                            -- ignore all files for analysis to exclusively use Ruff for linting
-                            ignore = { '*' },
-                        }
+                        -- analysis = {
+                        --     -- ignore all files for analysis to exclusively use Ruff for linting
+                        --     ignore = { '*' },
+                        -- }
                     },
                 },
             },
