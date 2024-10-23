@@ -47,9 +47,11 @@ return { -- Highlight, edit, and navigate code
                     ["af"] = "@function.outer",
                     ["if"] = "@function.inner",
                     ["ac"] = "@class.outer",
+                    ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+                    ["io"] = "@loop.inner",
+                    ["ao"] = "@loop.inner",
                     -- You can optionally set descriptions to the mappings (used in the desc parameter of
                     -- nvim_buf_set_keymap) which plugins like which-key display
-                    ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
                     -- You can also use captures from other query groups like `locals.scm`
                     ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
                     ["is"] = { query = "@scope.inner", query_group = "locals", desc = "Select language scope" },
@@ -66,7 +68,7 @@ return { -- Highlight, edit, and navigate code
                     ['@function.outer'] = 'V', -- linewise
                     ['@class.outer'] = '<c-v>', -- blockwise
                 },
-                include_surrounding_whitespace = true,
+                include_surrounding_whitespace = false,
             },
             move = {
                 enable = true,
