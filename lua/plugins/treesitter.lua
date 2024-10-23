@@ -97,10 +97,10 @@ return { -- Highlight, edit, and navigate code
                     ["[]"] = "@class.outer",
                 },
                 goto_next = {
-                    ["]d"] = "@conditional.outer",
+                    ["]i"] = "@conditional.outer",
                 },
                 goto_previous = {
-                    ["[d"] = "@conditional.outer",
+                    ["[i"] = "@conditional.outer",
                 }
             }
         }
