@@ -36,5 +36,5 @@ vim.keymap.set("n", "<leader>w", "<cmd>edit ~\\OneDrive\\ -\\ Verisk\\ Analytics
 
 -- mapping for my projects
 vim.keymap.set("n", "<leader>fs", "<cmd>set filetype=sql<cr>")
-vim.keymap.set("n", "<leader>df", "<cmd>filetype detect<cr>")
+vim.keymap.set("n", "<leader>fd", "<cmd>filetype detect<cr>")
 
