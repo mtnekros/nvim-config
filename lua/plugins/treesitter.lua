@@ -69,7 +69,7 @@ return { -- Highlight, edit, and navigate code
                 include_surrounding_whitespace = true,
             },
             move = {
-                enable = false,
+                enable = true,
                 set_jumps = true, -- whether to set jumps in the jumplist
                 goto_next_start = {
                     ["]m"] = "@function.outer",
