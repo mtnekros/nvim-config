@@ -176,10 +176,9 @@ return {
                         disableOrganizeImports = true,
                     },
                     python = {
-                        -- analysis = {
-                        --     -- ignore all files for analysis to exclusively use Ruff for linting
-                        --     ignore = { '*' },
-                        -- }
+                        analysis = {
+                            -- typeCheckingMode = "strict",
+                        }
                     },
                 },
             },
@@ -226,7 +225,10 @@ return {
                     local on_attach = function(client, bufnr)
                         if client.name == 'ruff' then
                             client.server_capabilities.hoverProvider = false
-                       end
+                        elseif client.name == "pyright" then
+                            client.server_capabilities.code_action = false
+                            client.server_capabilities.document_formatting = false
+                        end
                     end
                     server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
                     server.on_attach = on_attach
@@ -238,6 +240,25 @@ return {
 
         -- dart ls comes preinstalled with flutter. Not found in mason
         require("lspconfig")["dartls"].setup({})
+
+        -- print pyright diagnostics
+        local publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(function(error, result, context, config)
+            local filtered_msgs = {}
+            local unallowed_pyright_codes = {"reportUnusedVariable", "reportUnknownVariableType"}
+            for _, msg in ipairs(result.diagnostics) do
+                if  (
+                    msg.source == "Pyright" and
+                    (vim.tbl_contains(unallowed_pyright_codes, msg.code) or msg.code == nil)
+                ) then
+                    print(string.format("Ignored: %s: %s", tostring(msg.code), tostring(msg.message)))
+                else
+                    table.insert(filtered_msgs, msg)
+                end
+            end
+            result.diagnostics = filtered_msgs
+            return publish_diagnostics(error, result, context, config)
+        end, {})
 
         -- change diagnostic symbols in the sign column (gutter)
         local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
