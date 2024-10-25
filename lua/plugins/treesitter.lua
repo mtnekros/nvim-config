@@ -49,7 +49,7 @@ return { -- Highlight, edit, and navigate code
                     ["ac"] = "@class.outer",
                     ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
                     ["io"] = "@loop.inner",
-                    ["ao"] = "@loop.inner",
+                    ["ao"] = "@loop.outer",
                     -- You can optionally set descriptions to the mappings (used in the desc parameter of
                     -- nvim_buf_set_keymap) which plugins like which-key display
                     -- You can also use captures from other query groups like `locals.scm`
@@ -78,7 +78,7 @@ return { -- Highlight, edit, and navigate code
                     ["]]"] = { query = "@class.outer", desc = "Next class start" },
                     --
                     -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
-                    ["]o"] = "@loop.*",
+                    ["]o"] = "@loop.outer",
                     -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
                     --
                     -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
@@ -93,6 +93,7 @@ return { -- Highlight, edit, and navigate code
                 goto_previous_start = {
                     ["[m"] = "@function.outer",
                     ["[["] = "@class.outer",
+                    ["[o"] = "@loop.outer",
                 },
                 goto_previous_end = {
                     ["[M"] = "@function.outer",
