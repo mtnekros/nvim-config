@@ -44,15 +44,6 @@ return {
                     vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
 
-                -- using this because vim.keymap.set wasn't working for any mode except for normal mode
-                local vim_map = function(keys, cmd, desc, modes)
-                    modes = modes or {"n"}
-                    for _,m in ipairs(modes) do
-                        -- converting to inoremap <C-\> <cmd>something<cr> " desc
-                        vim.cmd(m .. "noremap " .. keys .. " " .. cmd .. " \" " .. desc)
-                    end
-                end
-
                 -- Find references for the word under your cursor.
                 map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
                 map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
@@ -66,7 +57,7 @@ return {
 
                 -- handled in lspsaga
                 -- map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-                -- map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+                map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" , "v"})
                 -- map("<F2>", vim.lsp.buf.rename, "Rename")
 
                 -- WARN: This is not Goto Definition, this is Goto Declaration.
@@ -80,8 +71,6 @@ return {
                 map("[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Diagnostic Jump Prev")
                 map("]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", "Diagnostic Jump Next")
                 map("<F2>", "<cmd>Lspsaga rename<cr>", "Rename")
-                map("<leader>ca", "<cmd>Lspsaga code_action<cr>", "[C]ode [A]ction")
-                vim_map("<leader>ca", "<cmd>Lspsaga code_action<cr>", "[C]ode [A]ction", {"v", "x"})
                 map("K", "<cmd>Lspsaga hover_doc<cr>", "Hover Documentation")
                 map("<leader>gr", "<cmd>Lspsaga finder<cr>", "Find References")
                 -- The following two autocommands are used to highlight references of the

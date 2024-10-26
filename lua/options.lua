@@ -52,6 +52,7 @@ vim.opt.listchars = { tab = "» ", trail = "", nbsp = "␣", eol = "󰌑" }
 
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.scrolloff = 2 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.sidescrolloff = 2 -- Minimal number of screen vert lines to keep right and left of cursor
 -- don't fold by defaul
 vim.opt.foldenable = false
 vim.opt.foldmethod = "manual"
