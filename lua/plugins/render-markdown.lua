@@ -38,7 +38,7 @@ return {
                 m.disable()
             end
         end, { bang = true })
-        vim.cmd("highlight link RenderMarkdownH2Bg MiniStatusLineModeCommand")
-        vim.cmd("highlight link RenderMarkdownH2 MiniStatusLineModeCommand")
+        vim.api.nvim_set_hl( 0, "RenderMarkdownH2", {fg="#282c34", bg="#e5c07b"})
+        vim.api.nvim_set_hl( 0, "RenderMarkdownH2Bg", {fg="#282c34", bg="#e5c07b"})
     end
 }
