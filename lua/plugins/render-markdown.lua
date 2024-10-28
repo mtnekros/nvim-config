@@ -13,10 +13,11 @@ return {
             border_virtual = true,
         },
         code = {
-            language_name = false,
-            style = "block",
+            language_name = true,
+            style = "language",
             sign = true,
             highlight = "RenderMarkdownCode",
+            highlight_inline = 'RenderMarkdownCodeInline',
             left_pad = 1,
             right_pad = 1,
         },
