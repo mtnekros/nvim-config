@@ -11,7 +11,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-    'sheerun/vim-polyglot',
+    require("plugins.render-markdown"),
 	require("plugins.which-key"),
 	require("plugins.telescope"),
 	-- LSP Plugins

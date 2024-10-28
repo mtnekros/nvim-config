@@ -25,7 +25,7 @@ return { -- Highlight, edit, and navigate code
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = { "ruby" },
-            disable = { "markdown" },
+            -- disable = { "markdown" },
         },
         incremental_selection = {
             enable = true,
