@@ -5,12 +5,10 @@ return {
         right_pad = 1,
         heading = {
             left_pad = 1,
-            right_pad = 1,
+            right_pad = 2,
             enabled = true,
             width = "block",
             sign = true,
-            border = true,
-            border_virtual = true,
         },
         code = {
             language_name = true,
@@ -39,7 +37,5 @@ return {
                 m.disable()
             end
         end, { bang = true })
-        vim.api.nvim_set_hl( 0, "RenderMarkdownH2", {fg="#282c34", bg="#e5c07b"})
-        vim.api.nvim_set_hl( 0, "RenderMarkdownH2Bg", {fg="#282c34", bg="#e5c07b"})
     end
 }
