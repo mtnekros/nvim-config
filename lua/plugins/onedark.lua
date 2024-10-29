@@ -22,9 +22,11 @@ return { -- You can easily change to a different colorscheme.
 		-- transparent background
 		vim.api.nvim_set_hl(0, "Normal", { bg = "none" }) -- for normal windows
 		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" }) -- for floating windows
-        -- vim.api.nvim_set_hl(0, "Comment", { bg = "none", fg = "DarkGray" })
         -- set RenderMarkdown related highlights
-        vim.api.nvim_set_hl( 0, "RenderMarkdownH2", {fg="#282c34", bg="#e5c07b"})
-        vim.api.nvim_set_hl( 0, "RenderMarkdownH2Bg", {fg="#282c34", bg="#e5c07b"})
+        vim.api.nvim_set_hl(0, "RenderMarkdownH2", {fg="#282c34", bg="#e5c07b"})
+        vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", {fg="#282c34", bg="#e5c07b"})
+        vim.api.nvim_set_hl(0, "RenderMarkdownBullet", {fg="#e06c75"})
+        vim.api.nvim_set_hl(0, "markdownCode", {fg="#e5c07b"})
+        vim.api.nvim_set_hl(0, "markdownCodeBlock", {fg="#e5c07b"})
 	end,
 }

@@ -29,13 +29,6 @@ return {
     },
     config = function(_, opts)
         require("render-markdown").setup(opts)
-        vim.api.nvim_create_user_command("ToggleMarkdown", function()
-            local m = require("render-markdown")
-            if require("render-markdown.state").enabled then
-                m.enable()
-            else
-                m.disable()
-            end
-        end, { bang = true })
+
     end
 }
