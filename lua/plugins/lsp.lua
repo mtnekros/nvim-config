@@ -234,7 +234,7 @@ return {
         local publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(function(error, result, context, config)
             local filtered_msgs = {}
-            local unallowed_pyright_codes = {"reportUnusedVariable", "reportUnknownVariableType"}
+            local unallowed_pyright_codes = {"reportUnusedVariable", "reportUnknownVariableType", "reportMissingImports"}
             for _, msg in ipairs(result.diagnostics) do
                 if  (
                     msg.source == "Pyright" and
