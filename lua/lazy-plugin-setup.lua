@@ -32,7 +32,7 @@ require("lazy").setup({
 	require("plugins.gitsigns"), -- adds gitsigns recommend keymaps
 	require("plugins.vim-fugitive"),
 	require("plugins.vim-surround"),
-	require("plugins.onedark"),
+	require("plugins.colorscheme"),
 }, {
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {
