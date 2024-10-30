@@ -22,14 +22,14 @@ return {
         checkbox = {
             position = "overlay",
             checked = { icon = ' ' },
-            unchecked = { icon = ' ' },
+            unchecked = { icon = ' ' },
             custom = {
                 inprogress = { raw = '[/]', rendered = ' ', highlight = 'Special' },
                 important = { raw = '[~]', rendered = '󰓎 ', highlight = 'DiagnosticWarn' },
             }
         },
         bullet = {
-            icons = { '', '', '󰺕', '󰓏', '󰻂', '', '󰪥'},
+            icons = { ' ', '󰺕', '󰄰', '󰻂', '󰪥', ''},
         }
     },
     config = function(_, opts)
