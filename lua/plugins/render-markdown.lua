@@ -29,7 +29,7 @@ return {
             }
         },
         bullet = {
-            icons = { ' ', '󰺕', '󰄰', '󰻂', '󰪥', ''},
+            icons = { '  ', '󰺕  ', '󰄰  ', '󰻂  ', '󰪥  ', '  '},
         }
     },
     config = function(_, opts)

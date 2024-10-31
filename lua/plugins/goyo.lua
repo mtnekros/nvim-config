@@ -52,6 +52,9 @@ return {
                 for _, map in pairs(mappings) do
                     vim.keymap.del(map.mode, map.keys)
                 end
+
+                -- reload onedark (because goyo deletes many RenderMarkdownHighlights defined in onedark colorscheme)
+                vim.cmd("silent Lazy! reload onedark.vim")
             end
         })
 	end,
