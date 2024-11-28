@@ -6,3 +6,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Set commentstring in sql files",
+    pattern = "sql",
+    group = vim.api.nvim_create_augroup("sql-comment-string", {clear = true}),
+    callback = function()
+        vim.bo.commentstring = "-- %s"
+    end,
+})
