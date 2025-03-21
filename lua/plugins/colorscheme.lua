@@ -26,6 +26,8 @@ return { -- You can easily change to a different colorscheme.
         vim.api.nvim_set_hl(0, "RenderMarkdownH2", {fg="#282c34", bg="#e5c07b"})
         vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", {fg="#282c34", bg="#e5c07b"})
         vim.api.nvim_set_hl(0, "RenderMarkdownBullet", {fg="#e06c75"})
+        vim.api.nvim_set_hl(0, "RenderMarkdownBullet", {fg="#e06c75"})
+        vim.api.nvim_set_hl(0, "RenderMarkdownSign", {fg="#e5c07b"})
         vim.api.nvim_set_hl(0, "markdownCode", {fg="#e5c07b"})
         vim.api.nvim_set_hl(0, "markdownCodeBlock", {fg="#e5c07b"})
 	end,

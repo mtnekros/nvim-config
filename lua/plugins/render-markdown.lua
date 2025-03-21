@@ -21,11 +21,12 @@ return {
         },
         checkbox = {
             position = "overlay",
-            checked = { icon = ' ' },
-            unchecked = { icon = ' ' },
+            checked = { icon = '󰸞 ', highlight = 'Special' },
+            unchecked = { icon = ' ', highlight = 'Special' },
             custom = {
-                inprogress = { raw = '[/]', rendered = ' ', highlight = 'Special' },
-                important = { raw = '[~]', rendered = '󰓎 ', highlight = 'DiagnosticWarn' },
+                inprogress = { raw = '[/]', rendered = ' ', highlight = 'DiagnosticWarn' },
+                postponed = { raw = '[>]', rendered = '󰜴 ', highlight = 'DiagnosticWarn' },
+
             }
         },
         bullet = {
