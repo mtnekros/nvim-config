@@ -236,9 +236,9 @@ return {
             local filtered_msgs = {}
             local unallowed_pyright_codes = {"reportUnusedVariable", "reportUnknownVariableType", "reportMissingImports"}
             for _, msg in ipairs(result.diagnostics) do
-                if  (
+                if (
                     msg.source == "Pyright" and
-                    (vim.tbl_contains(unallowed_pyright_codes, msg.code) or msg.code == nil)
+                    vim.tbl_contains(unallowed_pyright_codes, msg.code)
                 ) then
                     print(string.format("Ignored: %s: %s", tostring(msg.code), tostring(msg.message)))
                 else
