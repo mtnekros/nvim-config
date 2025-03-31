@@ -6,9 +6,11 @@ return {
         heading = {
             left_pad = 1,
             right_pad = 2,
+            position = "inline",
             enabled = true,
             width = "block",
             sign = true,
+            icons = { '󰫎 ', '󰫎 ', '󰫎 ', '󰫎 ', '󰫎 ', '󰫎 ' },
         },
         code = {
             language_name = true,
