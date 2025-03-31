@@ -205,6 +205,8 @@ return {
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
         require("mason-lspconfig").setup({
+            ensure_installed={},
+            automatic_installation=true,
             handlers = {
                 function(server_name)
                     local server = servers[server_name] or {}
@@ -236,11 +238,16 @@ return {
             local filtered_msgs = {}
             local unallowed_pyright_codes = {"reportUnusedVariable", "reportUnknownVariableType", "reportMissingImports"}
             for _, msg in ipairs(result.diagnostics) do
-                if  (
+                if (
                     msg.source == "Pyright" and
-                    (vim.tbl_contains(unallowed_pyright_codes, msg.code) or msg.code == nil)
+                    vim.tbl_contains(unallowed_pyright_codes, msg.code)
                 ) then
-                    print(string.format("Ignored: %s: %s", tostring(msg.code), tostring(msg.message)))
+                    -- print(string.format("Ignored: %s: %s", tostring(msg.code), tostring(msg.message)))
+                    -- print used before was blocking
+                    vim.notify(
+                        string.format("Ignored: %s: %s", tostring(msg.code), tostring(msg.message)),
+                        vim.log.levels.INFO
+                    )
                 else
                     table.insert(filtered_msgs, msg)
                 end
