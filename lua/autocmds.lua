@@ -14,3 +14,16 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.commentstring = "-- %s"
     end,
 })
+
+
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Ignore linting errors in a python file",
+    pattern = "python",
+    group = vim.api.nvim_create_augroup("ignore-python-errors", {clear = true}),
+    callback = function()
+        vim.keymap.set("n", "<leader>ie", function()
+            vim.cmd("call append(0, '# type: ignore')")
+            vim.cmd("call append(0, '# ruff: noqa')")
+        end, {noremap =true})
+    end,
+})
