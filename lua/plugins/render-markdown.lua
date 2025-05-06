@@ -28,6 +28,7 @@ return {
             custom = {
                 inprogress = { raw = '[/]', rendered = ' ', highlight = 'DiagnosticWarn' },
                 postponed = { raw = '[>]', rendered = '󰜴 ', highlight = 'DiagnosticWarn' },
+                cancelled = { raw = '[-]', rendered = '󱝋 ', highlight = 'Special' },
 
             }
         },
