@@ -34,6 +34,7 @@ require("lazy").setup({
 	require("plugins.vim-fugitive"),
 	require("plugins.vim-surround"),
 	require("plugins.colorscheme"),
+	require("plugins.ai"),
 }, {
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {
