@@ -7,7 +7,13 @@ return { -- Autoformat
             replace_keycodes = false
         })
         vim.g.copilot_no_tab_map = true
-        vim.g.copilot_enabled = false
+        vim.api.nvim_create_autocmd("BufEnter", {
+            pattern = "*",
+            callback = function()
+                vim.cmd("Copilot disable")
+            end,
+        })
+        vim.cmd("Copilot disable")
     end,
 }
 
